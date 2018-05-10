@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+
+</head>
+<body>
+<h1 class="headerClass"> SuperHero Hangman game</h1>
+
+<h1 id="hiddenWord" class="headerClass"></h1>
+<h2 id="lives" class="headerClass"></h2>
+
+<div id="hangmanImages"><img src="images/img0.jpg">
+    
+</div>
+
+<div id="letterBox">
+    <h1 id="usedLetters">Used Letters</h1>
+</div>
+
+
+<script>
+//makes array of random words
+    var randomWords = ["ironman", "drstrange", "thehulk", "blackwidow", "thor", "groot", "deadpool", "spiderman", "greenarrow", "captainmarvel", "captianamerica" ];
+// chooses a random word from
+    var wordChoice = randomWords[Math.floor(Math.random() * randomWords.length)];
+    var userText;
+    
+    var displayWord = [];
+    var wordLength = wordChoice.length;
+    var lives = 10;
+    var j = 0;
+    
+
+
+
+//image array
+var imgArray = new Array();
+
+imgArray[0] = "images/img0.jpg";
+imgArray[1] = "images/img1.jpg";
+imgArray[2] = "images/img2.jpg";
+imgArray[3] = "images/img3.jpg";
+imgArray[4] = "images/img4.jpg";
+imgArray[5] = "images/img5.jpg";
+imgArray[6] = "images/img6.jpg";
+imgArray[7] = "images/img7.jpg";
+imgArray[8] = "images/img8.jpg";
+imgArray[9] = "images/img9.jpg";
+imgArray[10] = "images/img10.jpg";
+
+
+
+// puts the random word into the h1 tag, hides it with -------
+function outPutWordChoice() {
+    for (i = 0; i<wordLength; i++) {
+        displayWord += "-";
+    }
+  document.getElementById("hiddenWord").innerHTML = displayWord;
+};
+
+function outPutLives() {
+    document.getElementById("lives").innerHTML = lives+" lives";
+    
+
+    if (lives === 0) {
+        document.write("You have been slain by Thanos");
+    }
+
+    
+};
+
+
+function hangmanImages() {
+
+   var img = document.createElement("img");
+   img.style.width = "200px";
+   img.style.height = "200px";
+   img.setAttribute("src", imgArray[j]);
+
+    var div = document.getElementById("hangmanImages");
+    div.innerHTML = '';
+    div.appendChild(img);
+    
+ 
+};
+
+
+
+
+
+function usedLetters() {
+    cashedLetters = userText + ", ";
+    
+    document.getElementById("letterBox").innerHTML += cashedLetters;
+
+    
+};
+
+//excutes the funtion to put word into h1 tag
+outPutWordChoice();
+outPutLives();
+
+
+
+ 
+
+console.log(wordChoice);
+console.log(wordChoice.length);
+
+
+//unhides the text
+
+
+ 
+
+
+
+
+
+//listens for keys
+//checks if user key = string
+
+     document.onkeyup = function(event) {
+        userText = event.key;
+
+        if ( wordChoice.indexOf(userText) > -1 ) {
+          // alert("you found a letter");         
+            
+            for (i = 0; i < wordLength; i++) {
+                if (userText === wordChoice.charAt(i)) {
+                    displayWord = displayWord.replaceAt(i, userText);
+                    document.getElementById("hiddenWord").innerHTML = displayWord;
+                     
+            //Thank you Amir Jafari all credit for this^^^ goes to him
+            
+           
+         
+                }         
+            }
+        
+            
+        }
+        else {
+            alert("The letter you selceted is incorrect");
+            lives--;
+            console.log(lives);
+            outPutLives();
+            usedLetters();
+            j++;
+            hangmanImages();
+           
+            
+
+        }
+       
+    };
+
+
+String.prototype.replaceAt = function (index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+};
+ 
+
+
+
+
+
+
+        </script>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,32 @@
+body {
+    background-image: url("http://coffecase.win/77/e6ac4/42-hd-marvel-wallpapers-1920x1080-and-a-few-higher_hd-marvel-wallpapers-x-and-a-few-higher-albu-on-the-flash-hd-wallpap.jpg");
+}
+
+.headerClass {
+    color: white;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
+
+#hangmanImages {
+    height: 200px;
+    width: 200px;
+    background-color: white;
+}
+
+#letterBox {
+    background-color: white;
+    color:black;
+    height: 200px;
+    width: 200px;
+    
+}
+
+#usedLetters {
+    border-bottom-style: solid;
+    border-color: black;
+    border-width: 3px;
+}
